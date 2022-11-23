@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_restaurant, only: [:new, :create]
 
-  def index
-    @reviews = Review.all
-  end
-
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
@@ -20,7 +16,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to restaurant_path(@restaurant)
     else
-      render :new, status: :unprocessable_entity
+      render "restaurants/show"
     end
   end
 
